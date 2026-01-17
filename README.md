@@ -10,13 +10,12 @@
 
 ### Quick Install
 
-```
-/plugin install brand-studio@claude-plugin-directory
-```
-
-Or via [claude-plugins.dev](https://claude-plugins.dev):
 ```bash
-npx claude-plugins install ProofOfReach/brand-studio-plugin
+# Add the marketplace
+claude plugin marketplace add https://github.com/ProofOfReach/brand-studio-plugin.git
+
+# Install the plugin
+claude plugin install brand-studio@brand-studio-plugin
 ```
 
 </div>
@@ -44,20 +43,20 @@ npx claude-plugins install ProofOfReach/brand-studio-plugin
 ## Quick Example
 
 ```bash
-# Generate 10+ headline variations for a product
-/headline "AI-powered inventory management for restaurants"
-
 # Write a complete landing page with research phase
-/copy landing-page --product "MenuFlow" --audience "restaurant owners"
+/copywriting
+> "Write a landing page for MenuFlow, an AI-powered inventory
+   management tool for restaurant owners"
 
 # Create a color palette with accessibility checks
-/palette --mood "trustworthy, modern, appetizing"
+/designing
+> "Create a color palette for MenuFlow - mood: trustworthy,
+   modern, appetizing. Must pass WCAG AA."
 
 # Build a full brand kit from scratch
-/brand-kit create --name "MenuFlow" --values "efficiency, reliability, simplicity"
-
-# Review existing copy and get specific fixes
-/review-copy ./marketing/homepage.md
+/brand-building
+> "Create brand guidelines for MenuFlow with values:
+   efficiency, reliability, simplicity"
 ```
 
 ---
@@ -85,66 +84,56 @@ npx claude-plugins install ProofOfReach/brand-studio-plugin
 
 ## Installation
 
-### From Official Directory (Recommended)
-
-```
-/plugin install brand-studio@claude-plugin-directory
-```
-
-### From Community Registry
+### Via CLI (Recommended)
 
 ```bash
-npx claude-plugins install ProofOfReach/brand-studio-plugin
-```
+# Add the marketplace
+claude plugin marketplace add https://github.com/ProofOfReach/brand-studio-plugin.git
 
-### Manual Installation
-
-```bash
-git clone https://github.com/ProofOfReach/brand-studio-plugin.git ~/.claude/plugins/brand-studio
-```
-
-Then add to your `~/.claude/settings.json`:
-
-```json
-{
-  "pluginDirs": ["~/.claude/plugins/brand-studio"]
-}
+# Install the plugin
+claude plugin install brand-studio@brand-studio-plugin
 ```
 
 ### Per-Session Loading
 
 ```bash
-claude --plugin-dir ~/.claude/plugins/brand-studio
+claude --plugin-dir /path/to/brand-studio-plugin
 ```
 
 ---
 
-## Commands
+## Skills
 
-### Copy Skill
+### Copywriting Skill (`/copywriting`)
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `/copy` | Generate marketing copy | `/copy landing-page --product "X" --audience "Y"` |
-| `/headline` | Create headline variations | `/headline "product description"` |
-| `/review-copy` | Audit and improve existing copy | `/review-copy ./path/to/copy.md` |
-| `/copy-lpo` | Landing page optimization workflow | `/copy-lpo ./landing.html` |
+Generate research-driven marketing copy using proven frameworks.
 
-### Design Skill
+| Use Case | Example |
+|----------|---------|
+| Landing pages | `/copywriting` then describe your product and audience |
+| Headlines | Ask for headline variations for your offer |
+| Email sequences | Request email copy with awareness-level matching |
+| Ad copy | Generate Facebook/Google ad variations |
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `/design` | Create visual concepts | `/design logo-concept --brand "Acme"` |
-| `/palette` | Generate color schemes | `/palette --mood "professional"` |
-| `/typography` | Typography recommendations | `/typography --industry "fintech"` |
+### Designing Skill (`/designing`)
 
-### Brand-Kit Skill
+Create visual brand concepts with principled design rationale.
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `/brand-kit` | Build complete brand guidelines | `/brand-kit create --name "X" --values "a, b, c"` |
-| `/brand-audit` | Check brand consistency | `/brand-audit ./brand-assets/` |
-| `/brand-apply` | Apply brand to content | `/brand-apply --kit ./brand.json --content ./` |
+| Use Case | Example |
+|----------|---------|
+| Logo concepts | `/designing` then describe brand personality |
+| Color palettes | Request palette with mood and accessibility requirements |
+| Typography | Get font pairing recommendations for your industry |
+
+### Brand-Building Skill (`/brand-building`)
+
+Orchestrate complete brand guidelines combining copy and design.
+
+| Use Case | Example |
+|----------|---------|
+| New brand | `/brand-building` with name, values, and target audience |
+| Brand refresh | Provide existing assets for cohesive update |
+| Brand guidelines doc | Generate complete brand book |
 
 ---
 
@@ -154,7 +143,7 @@ claude --plugin-dir ~/.claude/plugins/brand-studio
 brand-studio/
 │
 ├── skills/
-│   ├── copy/                    # Copywriting skill
+│   ├── copywriting/             # Copywriting skill
 │   │   ├── SKILL.md             # Write Mode + Review Mode workflows
 │   │   ├── references/          # 11 framework files
 │   │   │   ├── headlines.md     # Headline formulas, swipe file
@@ -164,7 +153,7 @@ brand-studio/
 │   │   │   └── ...
 │   │   └── scripts/             # Analysis tools
 │   │
-│   ├── design/                  # Visual design skill
+│   ├── designing/               # Visual design skill
 │   │   ├── SKILL.md             # 5-stage design process
 │   │   └── references/          # 4 principle files
 │   │       ├── logo-design-principles.md
@@ -172,12 +161,11 @@ brand-studio/
 │   │       ├── typography-principles.md
 │   │       └── brand-strategy-principles.md
 │   │
-│   └── brand-kit/               # Orchestration skill
+│   └── brand-building/          # Orchestration skill
 │       └── SKILL.md             # 5-phase brand creation workflow
 │
-└── commands/                    # Command definitions
-    ├── copy.md
-    └── design.md
+└── .claude-plugin/
+    └── plugin.json              # Plugin manifest
 ```
 
 ---
@@ -276,15 +264,15 @@ It's a complete studio for brand creation — not just copywriting, not just des
 
 ### What happened to "copywriting-plugin"?
 
-Brand Studio is the evolution. The original copywriting skill is now the `/copy` component, joined by `/design` and `/brand-kit` for complete brand creation.
+Brand Studio is the evolution. The original copywriting skill is now `/copywriting`, joined by `/designing` and `/brand-building` for complete brand creation.
 
-### Can I use just the copy skill?
+### Can I use just the copywriting skill?
 
-Yes. Each skill works independently. Use `/copy`, `/headline`, `/review-copy` without touching design or brand-kit.
+Yes. Each skill works independently. Use `/copywriting` without touching designing or brand-building.
 
 ### Does it work with my existing brand?
 
-Yes. Use `/review-copy` to audit existing copy, or feed your brand guidelines into `/brand-apply` to generate on-brand content.
+Yes. Use `/copywriting` to review existing copy, or provide your brand guidelines when using any skill to generate on-brand content.
 
 ### Can I use this commercially?
 
