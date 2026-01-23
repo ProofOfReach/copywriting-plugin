@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: This skill should be used when the user asks to "write copy", "review copy", "headline ideas", "sales page", "landing page", "email copy", "ad copy", "value proposition", "CTA", "persuasive writing", "direct response", "sales letter", "offer creation", "conversion optimization", or discusses marketing copy.
+description: This skill should be used when the user asks to "write copy", "review copy", "headline ideas", "sales page", "landing page", "email copy", "ad copy", "value proposition", "CTA", "persuasive writing", "direct response", "sales letter", "offer creation", "conversion optimization", or discusses marketing copy. Also use when the user mentions "psychology", "mental models", "cognitive bias", "persuasion", "behavioral science", "why people buy", "decision-making", "consumer behavior", or wants to apply psychological principles to marketing.
 ---
 
 # Copywriting Skill
@@ -236,6 +236,10 @@ Load specific reference files based on the task at hand. This ensures relevant f
 **Conversion Testing**
 - Load: `testing-methodology.md`
 - Contains: PIE Framework, Hypothesis Development, Statistical Requirements
+
+**Psychology / Mental Models**
+- Load: `psychology.md`
+- Contains: 70+ marketing mental models (First Principles, Jobs to Be Done, Pareto, Inversion), buyer psychology (Endowment Effect, IKEA Effect, Loss Aversion), pricing psychology (Charm Pricing, Rule of 100, Anchoring), Cialdini's 6 principles, Pre-Suasion, Triune Brain Theory, Fogg Behavior Model, NLP devices, Veloso's Trifecta, cognitive styles, learning modalities
 
 ### Loading Protocol
 
